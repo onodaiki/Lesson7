@@ -53,6 +53,8 @@ class WebViewActivity: AppCompatActivity(){
 
         }
 
+
+
         button1.setOnClickListener {
             if (count % 2 == 1) {//お気に入り登録機能
                 button1.text = "お気に入りを削除する"
@@ -65,20 +67,41 @@ class WebViewActivity: AppCompatActivity(){
                         url = if (sitems.couponUrls.sp.isNotEmpty()) sitems.couponUrls.sp else sitems.couponUrls.pc
                         address=sitems.address
                     })
-                    (viewPagerAdapter.fragments[WebViewActivity.VIEW_PAGER_POSITION_FAVORITE] as FavoriteFragment).updateData()
-
-
                 }else if(fitems is FavoriteShop){
-
-
+                    FavoriteShop.insert(FavoriteShop().apply {
+                        id = fitems.id
+                        name = fitems.name
+                        imageUrl = fitems.imageUrl
+                        url = fitems.url
+                        address=fitems.address
+                    })
                 }
-
-
             } else {//お気に入り削除機能
                 button1.text = "お気に入りを登録する"
                 if(sitems is Shop){
-
+                    val id =sitems.id
+                    AlertDialog.Builder(this)
+                        .setTitle(R.string.delete_favorite_dialog_title)
+                        .setMessage(R.string.delete_favorite_dialog_message)
+                        .setPositiveButton(android.R.string.ok) { _, _ ->
+                            //deleteFavorite(id)
+                            FavoriteShop.delete(id)
+                        }
+                        .setNegativeButton(android.R.string.cancel) { _, _ ->}
+                        .create()
+                        .show()
                 }else if(fitems is FavoriteShop){
+                    val id =fitems.id
+                    AlertDialog.Builder(this)
+                        .setTitle(R.string.delete_favorite_dialog_title)
+                        .setMessage(R.string.delete_favorite_dialog_message)
+                        .setPositiveButton(android.R.string.ok) { _, _ ->
+                            //deleteFavorite(id)
+                            FavoriteShop.delete(id)
+                        }
+                        .setNegativeButton(android.R.string.cancel) { _, _ ->}
+                        .create()
+                        .show()
 
                 }else{
 

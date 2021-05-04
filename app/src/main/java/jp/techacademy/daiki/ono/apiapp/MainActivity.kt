@@ -30,13 +30,21 @@ open class MainActivity : AppCompatActivity(), FragmentCallback {
         TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
             tab.setText(viewPagerAdapter.titleIds[position])
         }.attach()
-    }
 
+    }
+    override fun onRestart() {
+        super.onRestart()
+        (viewPagerAdapter.fragments[VIEW_PAGER_POSITION_FAVORITE] as FavoriteFragment).updateData()
+        (viewPagerAdapter.fragments[VIEW_PAGER_POSITION_API] as ApiFragment).updateView()
+    }
     override fun onClickItem(shop: Shop) {
         WebViewActivity.start(this,shop)
+
+
     }
     override fun onClickItem(favoriteShop: FavoriteShop) {
         WebViewActivity.start(this,favoriteShop)
+
     }
 
 
