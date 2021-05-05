@@ -22,7 +22,7 @@ class WebViewActivity: AppCompatActivity(){
 
         val sitems = intent.getSerializableExtra(KEY_SHOP)
         val fitems = intent.getSerializableExtra(KEY_F_SHOP)
-        //var onClickDeleteFavorite: ((Shop) -> Unit)? = null
+
 
         var count = 0
         //urlを取得し画面表示
