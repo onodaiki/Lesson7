@@ -84,10 +84,13 @@ class WebViewActivity: AppCompatActivity(){
                         .setTitle(R.string.delete_favorite_dialog_title)
                         .setMessage(R.string.delete_favorite_dialog_message)
                         .setPositiveButton(android.R.string.ok) { _, _ ->
+
                             //deleteFavorite(id)
                             FavoriteShop.delete(id)
                         }
-                        .setNegativeButton(android.R.string.cancel) { _, _ ->}
+                        .setNegativeButton(android.R.string.cancel) { _, _ ->
+                            button1.text="お気に入りを削除する"
+                        }
                         .create()
                         .show()
                 }else if(fitems is FavoriteShop){
@@ -99,7 +102,9 @@ class WebViewActivity: AppCompatActivity(){
                             //deleteFavorite(id)
                             FavoriteShop.delete(id)
                         }
-                        .setNegativeButton(android.R.string.cancel) { _, _ ->}
+                        .setNegativeButton(android.R.string.cancel) { _, _ ->
+                            button1.text="お気に入りを削除する"
+                        }
                         .create()
                         .show()
 
